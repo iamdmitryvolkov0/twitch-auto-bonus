@@ -1,0 +1,20 @@
+{
+  "manifest_version": 3,
+  "name": "Twitch Auto Bonus",
+  "version": "1.0",
+  "description": "Автокликер кнопки бонуса на Twitch",
+  "permissions": ["storage"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": "icons/icon.png"
+  },
+  "icons": {
+    "128": "icons/icon.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*.twitch.tv/*"],
+      "js": ["content.js"]
+    }
+  ]
+}
