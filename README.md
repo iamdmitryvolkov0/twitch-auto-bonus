@@ -11,7 +11,7 @@
 
 ## 🛠 Установка
 
-1. Скачайте или клонируйте репозиторий.  
+1. [Скачайте и распакуйте актуальный архив](https://github.com/iamdmitryvolkov0/twitch-auto-bonus/releases/tag/current)
 2. Перейдите в Chrome: `chrome://extensions/`  
 3. Включите **Режим разработчика** (Developer Mode)  
 4. Нажмите **"Загрузить распакованное" (Load unpacked)**  
