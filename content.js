@@ -1,34 +1,29 @@
-console.log("%cTwitch Auto Bonus loaded", "color:#0f0;font-weight:bold");
+function findBonusButton() {
+    const icon = document.querySelector(".claimable-bonus__icon");
+    if (!icon) return null;
 
-function isEnabled() {
-    return new Promise(resolve => {
-        chrome.storage.sync.get(["enabled"], data =>
-            resolve(data.enabled ?? true)
-        );
-    });
+    const btn = icon.closest("button");
+    if (!btn) return null;
+
+    const label = btn.getAttribute("aria-label") || "";
+    if (!label.includes("бонус")) return null;
+
+    return btn;
 }
 
-function getBonusButton() {
-    let btn = document.querySelector('button[aria-label="Получить бонус"]');
-    if (btn) return btn;
-
-    btn = document.querySelector('button[aria-label*="бонус" i]');
-    if (btn) return btn;
-
-    const icon = document.querySelector('.claimable-bonus__icon');
-    if (icon) return icon.closest("button");
-
-    return null;
-}
-
-const observer = new MutationObserver(async () => {
-    if (!await isEnabled()) return;
-
-    const btn = getBonusButton();
+function clickBonus() {
+    const btn = findBonusButton();
     if (btn) {
-        console.log("%c[BONUS] Claimed!", "color:#00ff87;font-weight:bold");
+        console.log("[Twitch Bonus] Clicked bonus button");
         btn.click();
     }
+}
+
+const observer = new MutationObserver(() => {
+    clickBonus();
 });
 
-observer.observe(document.body, { childList: true, subtree: true });
+observer.observe(document.body, {
+    childList: true,
+    subtree: true,
+});
